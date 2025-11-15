@@ -22,6 +22,7 @@ class Rider(BaseModel):
     name: str = Field(..., description="Full name")
     phone: str = Field(..., description="Phone number")
     rating: Optional[float] = Field(5.0, ge=0, le=5)
+    api_key: Optional[str] = None
 
 
 class Vehicle(BaseModel):
@@ -38,6 +39,7 @@ class Driver(BaseModel):
     location: Optional[GeoPoint] = None
     is_available: bool = True
     rating: Optional[float] = Field(5.0, ge=0, le=5)
+    api_key: Optional[str] = None
 
 
 class Ride(BaseModel):
@@ -48,6 +50,7 @@ class Ride(BaseModel):
     distance_km: Optional[float] = None
     duration_min: Optional[float] = None
     fare_estimate: Optional[float] = None
+    surge_multiplier: Optional[float] = None
     status: str = Field(
         "requested",
         description="Ride status: requested|assigned|ongoing|completed|cancelled",
