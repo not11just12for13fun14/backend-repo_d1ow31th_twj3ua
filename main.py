@@ -1,12 +1,13 @@
 import os
 import secrets
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
 from bson import ObjectId
-from fastapi import FastAPI, HTTPException, Header
+from fastapi import FastAPI, HTTPException, Header, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import requests
 
 from database import db, create_document, get_documents
 from schemas import Rider, Driver, Ride
@@ -126,6 +127,85 @@ class FareQuery(BaseModel):
 def pricing_estimate(payload: FareQuery):
     price, mult = estimate_fare(payload.distance_km, payload.duration_min, payload.hour)
     return {"fare": price, "surge_multiplier": mult}
+
+
+# Geocoding (Nominatim) and Routing (OSRM)
+
+BBOX = {
+    "minLat": 12.80,
+    "maxLat": 13.20,
+    "minLng": 77.3,
+    "maxLng": 77.85,
+}
+
+
+@app.get("/geo/search")
+def geocode_search(q: str = Query(..., min_length=2), limit: int = 5):
+    """Proxy to OpenStreetMap Nominatim search with Bengaluru bbox constraints."""
+    try:
+        params = {
+            "q": q,
+            "format": "json",
+            "limit": max(1, min(limit, 10)),
+            "addressdetails": 1,
+            "viewbox": f"{BBOX['minLng']},{BBOX['maxLat']},{BBOX['maxLng']},{BBOX['minLat']}",
+            "bounded": 1,
+        }
+        headers = {"User-Agent": "Payana/1.0 (demo)"}
+        r = requests.get("https://nominatim.openstreetmap.org/search", params=params, headers=headers, timeout=10)
+        r.raise_for_status()
+        results = r.json()
+        items: List[Dict[str, Any]] = []
+        for it in results:
+            try:
+                items.append({
+                    "display_name": it.get("display_name"),
+                    "lat": float(it.get("lat")),
+                    "lng": float(it.get("lon")),
+                    "type": it.get("type"),
+                })
+            except Exception:
+                continue
+        return {"results": items[:limit]}
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Geocoding error: {str(e)[:120]}")
+
+
+@app.get("/route")
+def route(from_lat: float, from_lng: float, to_lat: float, to_lng: float):
+    """Route via public OSRM server. Returns GeoJSON line, distance (km), duration (min)."""
+    try:
+        url = (
+            "https://router.project-osrm.org/route/v1/driving/"
+            f"{from_lng},{from_lat};{to_lng},{to_lat}"
+        )
+        params = {
+            "overview": "full",
+            "geometries": "geojson",
+            "alternatives": "false",
+        }
+        r = requests.get(url, params=params, timeout=10)
+        r.raise_for_status()
+        data = r.json()
+        routes = data.get("routes", [])
+        if not routes:
+            raise HTTPException(status_code=404, detail="No route found")
+        best = routes[0]
+        distance_km = round(best.get("distance", 0) / 1000.0, 3)
+        duration_min = round(best.get("duration", 0) / 60.0, 1)
+        geometry = best.get("geometry", {})
+        coords: List[List[float]] = geometry.get("coordinates", [])
+        # Ensure lat/lng ordering for frontend convenience
+        latlngs = [{"lat": c[1], "lng": c[0]} for c in coords]
+        return {
+            "distance_km": distance_km,
+            "duration_min": duration_min,
+            "path": latlngs,
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Routing error: {str(e)[:120]}")
 
 
 # Riders
