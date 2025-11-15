@@ -1,41 +1,31 @@
 INFO:     Will watch for changes in these directories: ['/home/workspace']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [243] using StatReload
-INFO:     Started server process [245]
+INFO:     Started reloader process [317] using StatReload
+INFO:     Started server process [319]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     172.20.0.1:54442 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:54430 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55268 - "HEAD / HTTP/1.1" 405 Method Not Allowed
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /drivers HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55288 - "GET /rides HTTP/1.1" 200 OK
-INFO:     172.20.0.1:55278 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48838 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48854 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48864 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:48880 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48884 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48880 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48884 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48880 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48884 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48880 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:48884 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51962 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51966 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51962 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51966 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51966 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51962 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51966 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51962 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51962 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51966 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51966 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51962 - "GET /rides HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51962 - "GET /drivers HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51966 - "GET /rides HTTP/1.1" 200 OK
